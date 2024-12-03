@@ -1,0 +1,89 @@
+drop database Escola;
+
+create database Escola;
+
+use Escola;
+
+create table Estudantes
+(IDestudante int auto_increment primary key,
+nome varchar(100) not null unique,
+data_nascimento date,
+turma varchar(10)
+);
+
+create table Professores
+(IDprofessor int auto_increment primary key,
+nome varchar(100) not null unique,
+diciplina varchar(100) not null
+);
+
+create table Turmas
+(IDturma int auto_increment primary key,
+nome varchar(100) not null,
+IDprofessor int,
+foreign key (IDprofessor) references Professores(IDprofessor)
+);
+
+create table Notas
+(IDnota int auto_increment primary key,
+IDestudante int,
+IDturma int,
+nota int,
+foreign key (IDestudante) references Estudantes(IDestudante),
+foreign key (IDturma) references Turmas(IDturma)
+);
+
+insert into Turmas(nome) values
+('100-A'),
+('100-B'),
+('100-C'),
+('100-D');
+
+insert into Estudantes(nome, data_nascimento, turma) values 
+('Sameul', '2012-12-02', '100-B'),
+('Carla', '2009-04-20', '100-A'),
+('Talita', '2010-10-15', '100-A'),
+('Miguel', '2013-11-05', '100-B'),
+('Leonardo', '2008-07-29', '100-B'),
+('Amanda', '2015-08-11', '100-A'),
+('Thylor', '2005-06-14', '100-C'),
+('Sabrina', '2006-10-20', '100-D'),
+('Matias', '2007-12-02', '100-C'),
+('Bernardo', '2012-10-07', '100-D'),
+('Danilo', '2011-05-23', '100-C'),
+('Enaldo', '2010-06-08', '100-D'),
+('Sami', '2009-09-09', '100-A'),
+('Gabriel', '2008-04-28', '100-D'),
+('Caio', '2007-10-11', '100-C');
+
+insert into Professores(nome,diciplina) values
+('Roger','Matemática'),
+('Marcia','Biologia'),
+('Solange','Português'),
+('Arnaldo','Educação Física'),
+('Albert','Física'),
+('Josias','Artes');
+
+insert into Notas(nota) values
+(10),
+(7),
+(9),
+(5),
+(8),
+(6),
+(2),
+(4),
+(10),
+(3),
+(8),
+(5),
+(2),
+(1),
+(10),
+(8),
+(4),
+(9),
+(8),
+(10);
+
+select * from Estudantes
